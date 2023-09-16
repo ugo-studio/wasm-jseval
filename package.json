@@ -1,16 +1,17 @@
 {
-	"name": "wasm-jseval",
-	"version": "0.1.2",
-	"main": "index.js",
-	"browser": "duktapeEval.js",
-	"license": "MIT",
-	"devDependencies": {
-		"@rollup/plugin-commonjs": "^11.0.0",
-		"rollup": "^1.27.14",
-		"rollup-plugin-uglify": "^6.0.4"
-	},
-	"scripts": {
-		"build": "rollup -c --config-target=duktape && rollup -c --config-target=quickjs",
-		"test": "node test/test.js"
-	}
+  "name": "wasm-jseval",
+  "version": "0.1.2",
+  "main": "index.js",
+  "browser": "duktapeEval.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.0.0",
+    "rollup": "^1.27.14",
+    "rollup-plugin-uglify": "^6.0.4"
+  },
+  "scripts": {
+    "build": "rollup -c --config-target=duktape && rollup -c --config-target=quickjs",
+    "test": "node test/test.js"
+  },
+  "type": "module"
 }
