@@ -1,6 +1,6 @@
 # jseval-wasm
 
-A safe **eval** library based on WebAssembly and [Duktape](https://duktape.org/)/[QuickJS](https://bellard.org/quickjs/).
+A safe **eval** library based on WebAssembly and [Duktape](https://duktape.org/)/[QuickJS](https://bellard.org/quickjs/), that can run on nodejs, browser and workers(cloudflare workers).
 
 ## Usage
 

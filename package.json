@@ -13,7 +13,9 @@
     "jseval",
     "wasm",
     "sandbox",
-    "evaluate"
+    "evaluate",
+    "cloudflare",
+    "worker"
   ],
   "devDependencies": {
     "@types/node": "^20.6.2",
