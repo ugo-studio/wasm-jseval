@@ -1,15 +1,11 @@
-# wasm-js-eval
+# jseval-wasm
 
 A safe **eval** library based on WebAssembly and [Duktape](https://duktape.org/)/[QuickJS](https://bellard.org/quickjs/).
 
-[Duktape Demo](https://gh.maple3142.net/maple3142/duktape-eval/ae198189baf244ff062901475e8877637d265df3/example/example.html) | [Source code of Duktape Demo](https://github.com/maple3142/duktape-eval/blob/master/example/example.html)
-
 ## Usage
 
-In node:
-
 ```js
-import { QuickJs, DukTape } from "wasm-js-eval";
+import { QuickJs, DukTape } from "jseval-wasm";
 
 QuickJs().then(async (run) => {
   const res = await run("const aa = 10;aa"); // 10
@@ -26,11 +22,11 @@ DukTape().then(async (run) => {
 
 ### `DukTape(): Promise<(jscode: string, timeout?: number) => any>`
 
-Returns a Promise containing the run function.
+Returns a Promise containing the `run` function.
 
 ### `QuickJs(): Promise<(jscode: string, timeout?: number) => any>`
 
-Returns a Promise containing the run function.
+Returns a Promise containing the `run` function.
 
 #### `(jscode: string, timeout?: number) => any`
 

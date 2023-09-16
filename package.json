@@ -1,9 +1,20 @@
 {
-  "name": "wasm-jseval",
-  "version": "0.1.2",
+  "name": "jseval-wasm",
+  "version": "1.0.0",
   "main": "index.js",
   "browser": "index.js",
   "license": "MIT",
+  "author": "ugo-studio",
+  "repository": "https://github.com/ugo-studio/wasm-jseval",
+  "homepage": "https://github.com/ugo-studio/wasm-jseval",
+  "keywords": [
+    "javascript",
+    "eval",
+    "jseval",
+    "wasm",
+    "sandbox",
+    "evaluate"
+  ],
   "devDependencies": {
     "@types/node": "^20.6.2",
     "typescript": "^5.2.2"
