@@ -1,4 +1,4 @@
-# wasm-jseval
+# wasm-js-eval
 
 A safe **eval** library based on WebAssembly and [Duktape](https://duktape.org/)/[QuickJS](https://bellard.org/quickjs/).
 
@@ -9,67 +9,42 @@ A safe **eval** library based on WebAssembly and [Duktape](https://duktape.org/)
 In node:
 
 ```js
-const { duktapeEval, quickjsEval } = require('wasm-jseval')
-duktapeEval.getInstance().then(mod => {
-	console.log(mod.eval('1+1')) // 2
-	const add = mod.newFunction(['a', 'b'], 'return a+b')
-	console.log(add(1, 2)) // 3
-})
-quickjsEval.getInstance().then(mod => {
-	console.log(mod.eval('1+1')) // 2
-	const add = mod.newFunction(['a', 'b'], 'return a+b')
-	console.log(add(1, 2)) // 3
-})
-```
+import { QuickJs, DukTape } from "wasm-js-eval";
 
-In browser:
+QuickJs().then(async (run) => {
+  const res = await run("const aa = 10;aa"); // 10
+  console.log("quickjs ", res);
+});
 
-```html
-<script src="https://unpkg.com/wasm-jseval/duktapeEval.js"></script>
-<!-- <script src="https://unpkg.com/wasm-jseval/quickjsEval.js"></script> -->
-<script>
-	// or quickjsEval
-	duktapeEval.getInstance().then(mod => {
-		console.log(mod.eval('1+1')) // 2
-		const add = mod.newFunction(['a', 'b'], 'return a+b')
-		console.log(add(1, 2)) // 3
-	})
-</script>
+DukTape().then(async (run) => {
+  const res = await run("const aa = 10;aa"); // 10
+  console.log("duktape ", res);
+});
 ```
 
 ## API
 
-### `duktapeEval.getInstance(): Promise<Instance>`
+### `DukTape(): Promise<(jscode: string, timeout?: number) => any>`
 
-Returns a Promise to resolve the duktapeEval instance.
+Returns a Promise containing the run function.
 
-### `quickjsEval.getInstance(): Promise<Instance>`
+### `QuickJs(): Promise<(jscode: string, timeout?: number) => any>`
 
-Returns a Promise to resolve the quickjsEval instance.
+Returns a Promise containing the run function.
 
-### `Instance`
+#### `(jscode: string, timeout?: number) => any`
 
-#### `Instance#eval(code: string): any`
-
-Evaluate JavaScript string in Duktape engine, and return a value.
-
-#### `Instance#newFunction(argnames: string[], body: string): (...any) => any`
-
-Create a function like `new Function` to be called afterward.
+Evaluate JavaScript string in Quickjs/Duktape engine, and return a value.
 
 ## Q&A
 
 ### What can it runs?
 
-`duktapeEval` can run ES5 syntax and some ES6, ES7 capabilities. `quickjsEval` can run almost complete feature set of ES10.
+`DukTape` can run ES5 syntax and some ES6, ES7 capabilities. `QuickJs` can run almost complete feature set of ES10.
 
 ### Why two version?
 
-`duktapeEval` is smaller, but less feature. `quickjsEval` has a more complete JavaScript support, but it result in bigger size.
-
-### How can I pass data to it?
-
-`JSON.stringify` is your friend. `newFunction` is a good choice too.
+`DukTape` is smaller, but less feature. `QuickJs` has a more complete JavaScript support, but it result in bigger size.
 
 ### How can I return data from it?
 
@@ -77,5 +52,5 @@ Just like normal `eval`, for example `var a={};a.prop=1;a` will return `{ prop: 
 
 ### How big is this?
 
-`duktapeEval` is about 348kB, and gzipped version is 154kB.
-`quickjsEval` is about 484kB, and gzipped version is 225kB.
+`DukTape` is about 348kB, and gzipped version is 154kB.
+`QuickJs` is about 484kB, and gzipped version is 225kB.
