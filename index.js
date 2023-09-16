@@ -8,7 +8,7 @@ function getEval(mod) {
       try {
         setTimeout(() => reject(`TimeoutError: ${timeout}ms`), timeout);
         const res = rawEval(js_code);
-        if (res.split(" ")[0].includes("Error")) reject(res);
+        if (res.split(" ")[0].includes("Error: ")) reject(res);
         else resolve(JSON.parse(res));
       } catch (err) {
         reject(err);
