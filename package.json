@@ -1,6 +1,6 @@
 {
   "name": "jseval-wasm",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.js",
   "browser": "index.js",
   "license": "MIT",
