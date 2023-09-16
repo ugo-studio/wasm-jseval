@@ -1,7 +1,15 @@
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
+// import { createRequire } from "module";
+// const require = createRequire(import.meta.url);
 
-var Module = (() => {
+function fileURLToPath(url) {
+  const path = decodeURI(url.toString()).replace("file:///", "").split("");
+  for (const char in path) {
+    if (path[char] == "/") path[char] = "\\";
+  }
+  return path.join("");
+}
+
+var QuickJsModule = (() => {
   var _scriptDir = import.meta.url;
 
   return function (moduleArg = {}) {
@@ -14,20 +22,14 @@ var Module = (() => {
     });
     var r = Object.assign({}, d),
       t = "",
-      t2 = "",
       u,
       v,
-      fs = require("fs"),
-      aa = require("path");
-    t = require("url").fileURLToPath(new URL("./", import.meta.url));
-    t2 = decodeURI(new URL("./", import.meta.url).pathname);
-    t2.startsWith("/")
-      ? (t2 = t2.replace("/", "")).replaceAll("/", "\\")
-      : t2.replaceAll("/", "\\");
-    console.log("t", t, t2, new URL("./", import.meta.url));
+      // fs = require("fs"),
+      // aa = require("path");
+      t = fileURLToPath(new URL("./", import.meta.url));
     u = (a) => {
-      a = a.startsWith("file://") ? new URL(a) : aa.normalize(a);
-      return fs.readFileSync(a, void 0);
+      // a = a.startsWith("file://") ? new URL(a) : aa.normalize(a);
+      // return fs.readFileSync(a, void 0);
     };
     v = (a) => {
       a = u(a);
@@ -424,4 +426,4 @@ var Module = (() => {
     return moduleArg.ready;
   };
 })();
-export default Module;
+export default QuickJsModule;
