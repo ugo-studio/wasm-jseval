@@ -7,28 +7,34 @@ A safe **eval** library based on WebAssembly and [Duktape](https://duktape.org/)
 ```js
 import { QuickJs, DukTape } from "jseval-wasm";
 
-QuickJs().then(async (run) => {
-  const res = await run("const aa = 10;aa"); // 10
+QuickJs().then(async ({evalJs}) => {
+  const res = await evalJs("const aa = 10;aa"); // 10
   console.log("quickjs ", res);
 });
 
-DukTape().then(async (run) => {
-  const res = await run("const aa = 10;aa"); // 10
+DukTape().then(async ({evalJs}) => {
+  const res = await evalJs("const aa = 10;aa"); // 10
   console.log("duktape ", res);
 });
+```
+OR
+```js
+const { evalJs } = await QuickJs(); // or `const { evalJs } = await DukTape();`
+const res = await evalJs("const aa = 10;aa");
+console.log(res); // 10
 ```
 
 ## API
 
-### `DukTape(): Promise<(jscode: string, timeout?: number) => any>`
+### `DukTape(): Promise<{ evalJs: (jscode: string, timeout?: number) => Promise<any> }>`
 
-Returns a Promise containing the `run` function.
+Returns a Promise containing the `evalJs` function.
 
-### `QuickJs(): Promise<(jscode: string, timeout?: number) => any>`
+### `QuickJs(): Promise<{ evalJs: (jscode: string, timeout?: number) => Promise<any> }>`
 
-Returns a Promise containing the `run` function.
+Returns a Promise containing the `evalJs` function.
 
-#### `(jscode: string, timeout?: number) => any`
+#### `evalJs: (jscode: string, timeout?: number) => Promise<any>`
 
 Evaluate JavaScript string in Quickjs/Duktape engine, and return a value.
 
