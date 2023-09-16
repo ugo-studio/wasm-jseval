@@ -48,5 +48,5 @@ Just like normal `eval`, for example `var a={};a.prop=1;a` will return `{ prop: 
 
 ### How big is this?
 
-`DukTape` is about 348kB, and gzipped version is 154kB (may be smaller).
-`QuickJs` is about 484kB, and gzipped version is 225kB (may be smaller).
+`DukTape` is about 348kB, and gzipped version is 154kB.
+`QuickJs` is about 484kB, and gzipped version is 225kB.

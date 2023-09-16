@@ -6,6 +6,6 @@ QuickJs().then(async (run) => {
 });
 
 DukTape().then(async (run) => {
-  const res = await run("const aa = 10;aa"); // 10
+  const res = await run("const aa = 10;aa-"); // 10
   console.log("duktape ", res);
 });
