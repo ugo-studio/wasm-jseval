@@ -36,7 +36,7 @@ var DukTapeModule = (() => {
       a.buffer || (a = new Uint8Array(a));
       return a;
     };
-    process.argv.slice(2);
+    // process.argv.slice(2);
     h.inspect = () => "[Emscripten Module object]";
     h.print || console.log.bind(console);
     var y = h.printErr || console.error.bind(console);

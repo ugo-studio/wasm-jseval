@@ -36,7 +36,7 @@ var QuickJsModule = (() => {
       a.buffer || (a = new Uint8Array(a));
       return a;
     };
-    process.argv.slice(2);
+    // process.argv.slice(2);
     d.inspect = () => "[Emscripten Module object]";
     var ba = d.print || console.log.bind(console),
       w = d.printErr || console.error.bind(console);
