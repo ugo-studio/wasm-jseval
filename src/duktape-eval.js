@@ -12,7 +12,7 @@ var DukTapeModule = (() => {
     var ba = Object.assign({}, h),
       w = "",
       x;
-    w = _scriptDir;
+    // w = _scriptDir;
     _scriptDir && (w = _scriptDir);
     0 !== w.indexOf("blob:")
       ? (w = w.substr(0, w.replace(/[?#].*/, "").lastIndexOf("/") + 1))

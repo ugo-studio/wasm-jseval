@@ -2,4 +2,7 @@ duktape
 quickjs
 test
 example
+src/Makefile
+src/duktape-eval.c
+src/quickjs-eval.c
 README.md

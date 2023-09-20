@@ -12,15 +12,17 @@ var QuickJsModule = (() => {
     var r = Object.assign({}, d),
       t = "",
       u;
-    t = _scriptDir;
+    // t = _scriptDir;
     _scriptDir && (t = _scriptDir);
     0 !== t.indexOf("blob:")
       ? (t = t.substr(0, t.replace(/[?#].*/, "").lastIndexOf("/") + 1))
       : (t = "");
-    u = async (a) => {
-      const b = await fetch(a);
-      const c = await b.arrayBuffer();
-      return new Uint8Array(c);
+    u = (a) => {
+      var c = new XMLHttpRequest();
+      c.open("GET", a, !1);
+      c.responseType = "arraybuffer";
+      c.send(null);
+      return new Uint8Array(c.response);
     };
     var aa = d.print || console.log.bind(console),
       v = d.printErr || console.error.bind(console);
@@ -69,7 +71,7 @@ var QuickJsModule = (() => {
     }
     function ca() {
       var a = L;
-      return Promise.resolve().then(async () => {
+      return Promise.resolve().then(() => {
         if (a == L && w) var b = new Uint8Array(w);
         else {
           if (K(a)) {
@@ -83,7 +85,7 @@ var QuickJsModule = (() => {
             b = c;
           } else b = void 0;
           if (!b)
-            if (u) b = await u(a);
+            if (u) b = u(a);
             else throw "both async and sync fetching of the wasm failed";
         }
         return b;
