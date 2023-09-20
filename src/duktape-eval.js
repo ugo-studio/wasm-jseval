@@ -12,7 +12,6 @@ var DukTapeModule = (() => {
     var ba = Object.assign({}, h),
       w = "",
       x;
-    // w = _scriptDir;
     _scriptDir && (w = _scriptDir);
     0 !== w.indexOf("blob:")
       ? (w = w.substr(0, w.replace(/[?#].*/, "").lastIndexOf("/") + 1))
@@ -93,12 +92,22 @@ var DukTapeModule = (() => {
     }
     function ma(a, c) {
       return la()
-        .then((b) => WebAssembly.instantiate(b, a))
-        .then((b) => b)
+        .then((b) => {
+          const mod = new WebAssembly.Module(b);
+          const instance = new WebAssembly.Instance(mod, a);
+          return { module: mod, instance };
+        })
         .then(c, (b) => {
           y(`failed to asynchronously prepare wasm: ${b}`);
           A(b);
         });
+      // return la()
+      //   .then((b) => WebAssembly.instantiate(b, a))
+      //   .then((b) => b)
+      //   .then(c, (b) => {
+      //     y(`failed to asynchronously prepare wasm: ${b}`);
+      //     A(b);
+      //   });
     }
     function na(a, c) {
       return ma(a, c);
