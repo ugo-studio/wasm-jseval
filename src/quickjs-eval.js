@@ -91,12 +91,22 @@ var QuickJsModule = (() => {
     }
     function da(a, b) {
       return ca()
-        .then((c) => WebAssembly.instantiate(c, a))
-        .then((c) => c)
+        .then((c) => {
+          const mod = new WebAssembly.Module(c);
+          const instance = new WebAssembly.Instance(mod, a);
+          return { module: mod, instance };
+        })
         .then(b, (c) => {
           v(`failed to asynchronously prepare wasm: ${c}`);
           x(c);
         });
+      // return ca()
+      //   .then((c) => WebAssembly.instantiate(c, a))
+      //   .then((c) => c)
+      //   .then(b, (c) => {
+      //     v(`failed to asynchronously prepare wasm: ${c}`);
+      //     x(c);
+      //   });
     }
     function ea(a, b) {
       return da(a, b);
