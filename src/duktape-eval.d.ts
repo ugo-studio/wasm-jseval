@@ -4,6 +4,6 @@ export interface DukTapeModule {
     cwrap: function (name, res, param): function (js_code): any,
 }
 /**
-* @returns {Promise<DukTapeModule>}
+* @returns {DukTapeModule}
 */
-export default function DukTapeModule(): Promise<DukTapeModule>;
+export default function DukTapeModule(): DukTapeModule;

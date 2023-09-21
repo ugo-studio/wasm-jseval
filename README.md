@@ -7,36 +7,36 @@ A safe **eval** library based on WebAssembly and [Duktape](https://duktape.org/)
 ```js
 import { QuickJs, DukTape } from "jseval-wasm";
 
-QuickJs().then(async ({evalJs}) => {
-  const res = await evalJs("const aa = 10;aa"); // 10
-  console.log("quickjs ", res);
+const quickjs = QuickJs();
+quickjs.evalJs("const aa = 10;aa").then((res) => {
+  console.log("quickjs ", res); // 10
 });
 
-DukTape().then(async ({evalJs}) => {
-  const res = await evalJs("const aa = 10;aa"); // 10
-  console.log("duktape ", res);
+const duktape = DukTape();
+duktape.evalJs("const aa = 10;aa").then((res) => {
+  console.log("duktape ", res); // 10
 });
 ```
 OR
 ```js
-const { evalJs } = await QuickJs(); // or `const { evalJs } = await DukTape();`
+const { evalJs } = QuickJs(); // or `const { evalJs } = DukTape();`
 const res = await evalJs("const aa = 10;aa");
 console.log(res); // 10
 ```
 
 ## API
 
-### `DukTape(): Promise<{ evalJs: (jscode: string, timeout?: number) => Promise<any> }>`
+### `DukTape(): DukTape`
 
-Returns a Promise containing the `evalJs` function.
+Returns an instance of `DukTape` containing the `evalJs` function.
 
-### `QuickJs(): Promise<{ evalJs: (jscode: string, timeout?: number) => Promise<any> }>`
+### `QuickJs(): QuickJs`
 
-Returns a Promise containing the `evalJs` function.
+Returns an instance of `QuickJs` containing the `evalJs` function.
 
 #### `evalJs: (jscode: string, timeout?: number) => Promise<any>`
 
-Evaluate JavaScript string in Quickjs/Duktape engine, and return a value.
+Evaluate JavaScript code string with the Quickjs or Duktape engine, and return a value.
 
 ## Q&A
 
@@ -55,4 +55,4 @@ Just like normal `eval`, for example `var a={};a.prop=1;a` will return `{ prop: 
 ### How big is this?
 
 `DukTape` is about 348kB, and gzipped version is 154kB.
-`QuickJs` is about 484kB, and gzipped version is 225kB.
+`QuickJs` is about 500kB, and gzipped version is 225kB.

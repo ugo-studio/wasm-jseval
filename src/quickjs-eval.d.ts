@@ -4,6 +4,6 @@ export interface QuickJsModule {
     cwrap: function (name, res, param): function (js_code): any,
 }
 /**
-* @returns {Promise<QuickJsModule>}
+* @returns {QuickJsModule}
 */
-export default function QuickJsModule(): Promise<QuickJsModule>;
+export default function QuickJsModule(): QuickJsModule;

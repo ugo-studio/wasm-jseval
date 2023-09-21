@@ -2,14 +2,22 @@ import QuickJsModule from "./src/quickjs-eval.js";
 import DukTapeModule from "./src/duktape-eval.js";
 
 function getEval(mod) {
-  const rawEval = mod.cwrap("eval", "string", ["string"]);
   return {
     evalJs: (js_code, timeout = 1000) => {
-      return new Promise((resolve, reject) => {
+      return new Promise(async (resolve, reject) => {
         try {
-          setTimeout(() => reject(`TimeoutError: ${timeout}ms`), timeout);
-          const res = rawEval(js_code);
+          // set js code evaluation timeout
+          const timeoutId = setTimeout(
+            () => reject(`TimeoutError: ${timeout}ms`),
+            timeout
+          );
+          // evaluate js code
+          const res = (await mod).cwrap("eval", "string", ["string"])(js_code);
+          // stop timeout after js code evaluation
+          clearTimeout(timeoutId);
+          // return evaluation result
           if (res.split(" ")[0].includes("Error:")) reject(res);
+          else if (res == "undefined") resolve(res);
           else resolve(JSON.parse(res));
         } catch (err) {
           reject(err);
@@ -19,12 +27,12 @@ function getEval(mod) {
   };
 }
 
-export async function QuickJs() {
-  const mod = await QuickJsModule();
+export function QuickJs() {
+  const mod = QuickJsModule();
   return getEval(mod);
 }
 
-export async function DukTape() {
-  const mod = await DukTapeModule();
+export function DukTape() {
+  const mod = DukTapeModule();
   return getEval(mod);
 }

@@ -1,11 +1,11 @@
 import { QuickJs, DukTape } from "../index.js";
 
-QuickJs().then(async ({ evalJs }) => {
-  const res = await evalJs("const aa = 10;aa"); // 10
-  console.log("quickjs ", res);
+const quickjs = QuickJs();
+quickjs.evalJs("const aa = 10;aa").then((res) => {
+  console.log("quickjs ", res); // 10
 });
 
-DukTape().then(async ({ evalJs }) => {
-  const res = await evalJs("const aa = 10;aa"); // 10
-  console.log("duktape ", res);
+const duktape = DukTape();
+duktape.evalJs("const aa = 10;aa").then((res) => {
+  console.log("duktape ", res); // 10
 });

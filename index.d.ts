@@ -1,12 +1,18 @@
 /* tslint:disable */
 /* eslint-disable */
+interface QuickJs {
+  evalJs: (jscode: string, timeout: number = 1000) => Promise<any>;
+}
+interface DukTape {
+  evalJs: (jscode: string, timeout: number = 1000) => Promise<any>;
+}
 /**
  * instatiate the quickjs engine
- * @returns {Promise<{evalJs: function (jscode,timeout): Promise<any>}>}
+ * @returns {QuickJs}
  */
-export function QuickJs(): Promise<{evalJs: (jscode: string, timeout: number=1000) => Promise<any>}>;
+export function QuickJs(): QuickJs;
 /**
  * instatiate the quickjs engine
- * @returns {Promise<{evalJs: function (jscode,timeout): Promise<any>}>}
+ * @returns {DukTape}
  */
-export function DukTape(): Promise<{evalJs: (jscode: string, timeout: number=1000) => Promise<any>}>;
+export function DukTape(): DukTape;
