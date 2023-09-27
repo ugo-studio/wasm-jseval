@@ -5,6 +5,6 @@ export interface QuickJsModule {
 }
 /**
 * @param {Object={}} moduleArgs
-* @returns {QuickJsModule}
+* @returns {Promise<QuickJsModule>}
 */
-export default function QuickJsModule(moduleArgs: Object={}): QuickJsModule;
+export default function QuickJsModule(moduleArgs: Object={}): Promise<QuickJsModule>;

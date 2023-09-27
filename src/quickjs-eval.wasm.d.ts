@@ -1,3 +1,4 @@
 /* tslint:disable */
 /* eslint-disable */
-export const memory: WebAssembly.Memory;
+const QuickjsWasm: WebAssembly.Module;
+export default QuickjsWasm

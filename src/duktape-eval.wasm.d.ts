@@ -1,3 +1,4 @@
 /* tslint:disable */
 /* eslint-disable */
-export const memory: WebAssembly.Memory;
+const DukTapeWasm: WebAssembly.Module;
+export default DukTapeWasm

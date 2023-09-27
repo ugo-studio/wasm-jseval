@@ -1,3 +1,5 @@
+import QuickjsWasm from "./src/quickjs-eval.wasm";
+import DukTapeWasm from "./src/duktape-eval.wasm";
 import QuickJsModule from "./src/quickjs-eval.js";
 import DukTapeModule from "./src/duktape-eval.js";
 
@@ -28,11 +30,19 @@ function getEval(mod) {
 }
 
 export async function QuickJs() {
-  const mod = await QuickJsModule(/*QuickJsBundlerVersion*/);
+  const mod = await QuickJsModule({
+    instantiateWasm: async (obj, func) => {
+      func(await WebAssembly.instantiate(QuickjsWasm, obj));
+    },
+  });
   return getEval(mod);
 }
 
 export async function DukTape() {
-  const mod = await DukTapeModule(/*DukTapeBundlerVersion*/);
+  const mod = await DukTapeModule({
+    instantiateWasm: async (obj, func) => {
+      func(await WebAssembly.instantiate(DukTapeWasm, obj));
+    },
+  });
   return getEval(mod);
 }

@@ -5,6 +5,6 @@ export interface DukTapeModule {
 }
 /**
 * @param {Object={}} moduleArgs
-* @returns {DukTapeModule}
+* @returns {Promise<DukTapeModule>}
 */
-export default function DukTapeModule(moduleArgs: Object={}): DukTapeModule;
+export default function DukTapeModule(moduleArgs: Object={}): Promise<DukTapeModule>;

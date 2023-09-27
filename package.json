@@ -1,6 +1,6 @@
 {
   "name": "jseval-wasm",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "main": "index.js",
   "browser": "index.js",
   "license": "MIT",
@@ -22,8 +22,9 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "build": "npx tsc",
-    "test": "node test/test.js"
+    "build": "node scripts/createBundlerVersion.js",
+    "test": "node test/test.js",
+    "publish": "node scripts/createBundlerVersion.js && npm publish"
   },
   "type": "module"
 }

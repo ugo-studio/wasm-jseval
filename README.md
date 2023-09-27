@@ -7,19 +7,21 @@ A safe **eval** library based on WebAssembly and [Duktape](https://duktape.org/)
 ```js
 import { QuickJs, DukTape } from "jseval-wasm";
 
-const quickjs = QuickJs();
-quickjs.evalJs("const aa = 10;aa").then((res) => {
-  console.log("quickjs ", res); // 10
+QuickJs().then((quickjs) => {
+  quickjs.evalJs("const aa = 10;aa").then((res) => {
+    console.log("quickjs ", res); // 10
+  });
 });
 
-const duktape = DukTape();
-duktape.evalJs("const aa = 10;aa").then((res) => {
-  console.log("duktape ", res); // 10
+DukTape().then((duktape) => {
+  duktape.evalJs("const aa = 10;aa").then((res) => {
+    console.log("duktape ", res); // 10
+  });
 });
 ```
 OR
 ```js
-const { evalJs } = QuickJs(); // or `const { evalJs } = DukTape();`
+const { evalJs } = await QuickJs(); // or `const { evalJs } = await DukTape();`
 const res = await evalJs("const aa = 10;aa");
 console.log(res); // 10
 ```

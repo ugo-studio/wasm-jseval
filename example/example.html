@@ -19,12 +19,12 @@ for(var k in obj){
 }
 sum
 `;
-  const quickjs = QuickJs();
+  const quickjs = await QuickJs();
   quickjs.evalJs(testString).then((res) => {
     console.log("quickjs ", res);
   });
 
-  const duktape = DukTape();
+  const duktape = await DukTape();
   duktape.evalJs(testString).then((res) => {
     console.log("duktape ", res);
   });
