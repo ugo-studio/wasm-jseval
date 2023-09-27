@@ -5,6 +5,4 @@ example
 src/Makefile
 src/duktape-eval.c
 src/quickjs-eval.c
-src/duktape-eval.wasm
-src/quickjs-eval.wasm
 README.md

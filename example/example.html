@@ -1,7 +1,8 @@
 <h1>Open your console</h1>
-<script src="../duktapeEval.js"></script>
-<script>
-	const testString = `
+<script type="module">
+  import { QuickJs, DukTape } from "../index.js";
+
+  const testString = `
 var obj={}
 obj.a=7
 obj.b=8
@@ -17,9 +18,14 @@ for(var k in obj){
 	}
 }
 sum
-`
-	duktapeEval.getInstance().then(mod => {
-		console.log('eval: ', eval(testString))
-		console.log('duktape-eval: ', mod.eval(testString))
-	})
+`;
+  const quickjs = QuickJs();
+  quickjs.evalJs(testString).then((res) => {
+    console.log("quickjs ", res);
+  });
+
+  const duktape = DukTape();
+  duktape.evalJs(testString).then((res) => {
+    console.log("duktape ", res);
+  });
 </script>

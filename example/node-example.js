@@ -1,3 +1,5 @@
+import { QuickJs, DukTape } from "../index.js";
+
 const testString = `
 var obj={}
 obj.a=7
@@ -14,12 +16,13 @@ for(var k in obj){
 	}
 }
 sum
-`
-const { duktapeEval, quickjsEval } = require('../index')
-console.log('eval: ', eval(testString))
-duktapeEval.getInstance().then(mod => {
-	console.log('duktapeEval: ', mod.eval(testString))
-})
-quickjsEval.getInstance().then(mod => {
-	console.log('quickjsEval: ', mod.eval(testString))
-})
+`;
+const quickjs = QuickJs();
+quickjs.evalJs(testString).then((res) => {
+  console.log("quickjs ", res);
+});
+
+const duktape = DukTape();
+duktape.evalJs(testString).then((res) => {
+  console.log("duktape ", res);
+});
