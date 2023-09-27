@@ -91,22 +91,12 @@ var DukTapeModule = (() => {
     }
     function ma(a, c) {
       return la()
-        .then((b) => {
-          const mod = new WebAssembly.Module(b);
-          const instance = new WebAssembly.Instance(mod, a);
-          return { module: mod, instance };
-        })
+        .then((b) => WebAssembly.instantiate(b, a))
+        .then((b) => b)
         .then(c, (b) => {
           y(`failed to asynchronously prepare wasm: ${b}`);
           A(b);
         });
-      // return la()
-      //   .then((b) => WebAssembly.instantiate(b, a))
-      //   .then((b) => b)
-      //   .then(c, (b) => {
-      //     y(`failed to asynchronously prepare wasm: ${b}`);
-      //     A(b);
-      //   });
     }
     function na(a, c) {
       return ma(a, c);
