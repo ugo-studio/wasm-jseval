@@ -26,6 +26,11 @@ const res = await evalJs("const aa = 10;aa");
 console.log(res); // 10
 ```
 
+when running on an `edge` environment like; cloudflare workers or deno deploy. Import it like this:
+```js
+import { QuickJs } from 'jseval-wasm/index-bundler';
+```
+
 ## API
 
 ### `DukTape(): DukTape`
