@@ -3,6 +3,7 @@ quickjs
 test
 example
 scripts
+archive
 src/Makefile
 src/duktape-eval.c
 src/quickjs-eval.c
